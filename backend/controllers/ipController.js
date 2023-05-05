@@ -1,9 +1,6 @@
-// ipController.js
-/**
- * @description - it returns the ip Address from the incoming request
- */
 function getIP(req, res) {
-  return res.json({ ip: `${req.ip}` });
+  const ipAddress = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+  return res.json({ ip: ipAddress });
 }
 
 module.exports = { getIP };
